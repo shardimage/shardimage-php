@@ -1,0 +1,45 @@
+{
+    "name": "shardimage/shardimage-php",
+    "type": "library",
+    "description": "shardimage-php package",
+    "keywords": [
+        "shardimage",
+        "shardimage-php"
+    ],
+    "authors": [
+        {
+            "name": "Shardimage",
+            "email": "info@shardimage.com",
+            "homepage": "https://shardimage.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.0",
+        "shardimage/shardimage-php-api": "^1.0",
+        "psr/log": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "shardimage\\shardimagephp\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "shardimage\\shardimagephp\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.4-dev"
+        }
+    }
+}
