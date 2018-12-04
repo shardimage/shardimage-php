@@ -583,6 +583,38 @@ class Transformation
     }
 
     /**
+     * Add perspective transformation.
+     *
+     * @param int $dx1 destination x1
+     * @param int $dy1 destination y1
+     * @param int $dx2 destination x2
+     * @param int $dy2 destination y2
+     * @param int $dx3 destination x3
+     * @param int $dy3 destination y3
+     * @param int $dx4 destination x4
+     * @param int $dy4 destination y4
+     * @param int $sx1 source x1
+     * @param int $sy1 source y1
+     * @param int $sx2 source x2
+     * @param int $sy2 source y2
+     * @param int $sx3 source x3
+     * @param int $sy3 source y3
+     * @param int $sx4 source x4
+     * @param int $sy4 source y4
+     *
+     * @return \self
+     */
+    public function perspective($dx1, $dy1, $dx2, $dy2, $dx3, $dy3, $dx4, $dy4, $sx1 = null, $sy1 = null, $sx2 = null, $sy2 = null, $sx3 = null, $sy3 = null, $sx4 = null, $sy4 = null)
+    {
+        if (!is_null($sx1) || !is_null($sy1) || !is_null($sx2) || !is_null($sy2) || !is_null($sx3) || !is_null($sy3) || !is_null($sx4) || !is_null($sy4)) {
+            $params = [$sx1, $sy1, $dx1, $dy1, $sx2, $sy2, $dx2, $dy2, $sx3, $sy3, $dx3, $dy3, $sx4, $sy4, $dx4, $dy4];
+        } else {
+            $params = [$dx1, $dy1, $dx2, $dy2, $dx3, $dy3, $dx4, $dy4];
+        }
+        return $this->addItem('e', 'perspective', implode(',', $params));
+    }
+
+    /**
      * @param type $color
      *
      * @return \self
