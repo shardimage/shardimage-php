@@ -926,7 +926,30 @@ class Transformation
     {
         return $this->addItem('format', 'tiff');
     }
-    
+
+    /**
+     * Sets the given format.
+     *
+     * @param string $format
+     *
+     * @return \self
+     */
+    public function toFormat($format)
+    {
+        return $this->addItem('format', $format);
+    }
+
+    /**
+     * Sets the given parameter item into the chain.
+     *
+     * @param string $parameter
+     *
+     * @return \self
+     */
+    public function addRaw($parameter)
+    {
+        return $this->addItem($parameter);
+    }
 
     /**
      * Adds a new transformation item to the chain.
