@@ -331,6 +331,11 @@ class Client extends BaseObject
      * @param array    $params
      * @param callable $callback
      */
+        /**
+     * @param string[] $requiredParams
+     * @param array    $params
+     * @param callable $callback
+     */
     public function send($requiredParams, $params, $callback)
     {
         $params['params'] = $this->fillParams($requiredParams, isset($params['params']) ? $params['params'] : []);
@@ -350,7 +355,8 @@ class Client extends BaseObject
         }
 
         if (!$this->deferred) {
-            return $this->doSend();
+            $result = $this->doSend();
+            return reset($result);
         } else {
             return $request->id;
         }
@@ -358,22 +364,21 @@ class Client extends BaseObject
 
     /**
      * Sending deffered request.
-     * @return mixed
+     * @return array
      */
     private function doSend()
     {
         $response = $this->request->send();
         $this->request = null;
         if ($response instanceof ApiResponse) {
-            return $this->handleResponse($response);
-        } else {
-            $responses = [];
-            foreach ($response as $_response) {
-                $responses[$_response->id] = $this->handleResponse($_response);
-            }
-
-            return $responses;
+            $response = [$response];
         }
+        $responses = [];
+        foreach ($response as $_response) {
+            $responses[$_response->id] = $this->handleResponse($_response);
+        }
+
+        return $responses;
     }
 
     /**
