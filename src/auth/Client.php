@@ -331,11 +331,6 @@ class Client extends BaseObject
      * @param array    $params
      * @param callable $callback
      */
-        /**
-     * @param string[] $requiredParams
-     * @param array    $params
-     * @param callable $callback
-     */
     public function send($requiredParams, $params, $callback)
     {
         $params['params'] = $this->fillParams($requiredParams, isset($params['params']) ? $params['params'] : []);
