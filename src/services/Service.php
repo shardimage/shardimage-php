@@ -74,11 +74,11 @@ abstract class Service extends BaseObject
             return call_user_func($callback, $response);
         });
         if (isset($response->error)) {
-            $this->lastError = isset($response->error['message']) ? $response->error['message'] : 'Unknown error!';
+            $this->lastError = isset($response->error->message) ? $response->error->message : 'Unknown error!';
             if ($this->client->softExceptionEnabled) {
                 if (isset($response->meta['statusCode']) ? $response->meta['statusCode'] : false) {
                     $message = 'API error';
-                    $responseMessage = isset($response->error['message']) ? $response->error['message'] : null;
+                    $responseMessage = isset($response->error->message) ? $response->error->message : null;
                     if (is_string($responseMessage)) {
                         $message = $responseMessage;
                     } elseif (is_array($responseMessage)) {
@@ -86,9 +86,9 @@ abstract class Service extends BaseObject
                             $message .= sprintf(' / %s: %s', $attribute, $this->manageErrorReplaces($errors));
                         }
                     }
-                    throw HttpException::newInstance($response->meta['statusCode'], $message, $response->error['code'], is_array($responseMessage) ? $responseMessage : null);
+                    throw HttpException::newInstance($response->meta['statusCode'], $message, $response->error->code, is_array($responseMessage) ? $responseMessage : null);
                 }
-                throw new Exception('API error ' . (isset($response->error['code']) ? $response->error['code'] : -1) . '!');
+                throw new Exception('API error ' . (isset($response->error->code) ? $response->error->code : -1) . '!');
             }
         }
 

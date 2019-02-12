@@ -156,7 +156,7 @@ class Client extends BaseObject
     private $request;
 
     /**
-     * @var string Last error message
+     * @var mixed Last error message
      */
     private $lastError;
 
@@ -383,7 +383,7 @@ class Client extends BaseObject
     private function handleResponse($response)
     {
         if (isset($response->error)) {
-            $this->lastError = isset($response->error['message']) ? $response->error['message'] : 'Unknown error!';
+            $this->lastError = isset($response->error->message) ? $response->error->message : 'Unknown error!';
         }
         if (isset($this->callbacks[$response->id])) {
             return call_user_func_array($this->callbacks[$response->id], ['response' => $response]);
