@@ -131,6 +131,11 @@ class Client extends BaseObject
     public $cacheExpiration;
 
     /**
+     * @var int Request timeout [sec]
+     */
+    public $timeout = 180;
+
+    /**
      * @var Client Shardimage PHP API service
      */
     private $service;
@@ -194,6 +199,7 @@ class Client extends BaseObject
             'proxy' => $this->proxy,
             'cache' => $this->cache,
             'cacheExpiration' => $this->cacheExpiration,
+            'timeout' => $this->timeout,
         ]);
         $this->imageHostname = parse_url($this->imageHost, PHP_URL_HOST);
     }
