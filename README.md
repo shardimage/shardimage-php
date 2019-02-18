@@ -34,7 +34,7 @@ use shardimage\shardimagephp\auth\Client;
 $client = new Client([
     'apiKey' => '<apiKey>',             //key to use the API or the image serving
     'apiSecret' => '<apiSecret>',       //secret to use the API
-    'imageSecret' => '<imageSecret>'    //secret to gain more security on image serving
+    'imageSecret' => '<imageSecret>',    //secret to gain more security on image serving
     'cloudId' => '<cloudId>',           //default configuration for cloud ID, it can be overwritten in later usage
 ]);
 ```
@@ -130,8 +130,8 @@ Single thread:
 $file = __DIR__ . '/' . $file;
 $fileName = 'Example';
 $result = $client->getUploadService()->upload([
-    'file' => $file;
-    'cloudId' => <cloudId>;
+    'file' => $file,
+    'cloudId' => <cloudId>,
 ], [    //optional parameters
     'publicId' => $fileName,
     'tags' => [
@@ -160,7 +160,7 @@ foreach ($files as $file) {
     ], [
         'tags' => [
             'batch',
-            'examples'
+            'examples',
         ],
     ]);
 }
