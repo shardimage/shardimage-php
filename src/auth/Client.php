@@ -385,34 +385,37 @@ class Client extends BaseObject
      */
     private function doSend()
     {
-        if (!empty($this->sentContentIds) && count($this->sentContentIds) > $this->batchLimit) {
-            throw new InvalidCallException(sprintf("Request limit reached! Max %d requests per batch is accepted!", $this->batchLimit));
-        }
-        $response = $this->request->send();
-        $this->request = null;
-        if ($response instanceof ApiResponse) {
-            $response = [$response];
-        }
-        $responses = [];
-        $index = 0;
-        foreach ($response as $_response) {
-            $responses[$_response->id ?? $index] = $this->handleResponse($_response);
-            $index++;
-        }
-        foreach ($this->sentContentIds as $sentContentId) {
-            if (!array_key_exists($sentContentId, $responses)) {
-                $responses[$sentContentId] = new ApiResponse([
-                    'success' => false,
-                    'error' => new ResponseError([
-                        'type' => BadGatewayHttpException::class,
-                        'code' => ResponseError::ERRORCODE_HTTP_RESPONSE_ERROR,
-                        'message' => ['httpError' => 'Sent content not found in response!'],
-                    ]),
-                ]);
+        try {
+            if (!empty($this->sentContentIds) && count($this->sentContentIds) > $this->batchLimit) {
+                throw new InvalidCallException(sprintf("Request limit reached! Max %d requests per batch is accepted!", $this->batchLimit));
             }
+            $response = $this->request->send();
+            $this->request = null;
+            if ($response instanceof ApiResponse) {
+                $response = [$response];
+            }
+            $responses = [];
+            $index = 0;
+            foreach ($response as $_response) {
+                $responses[$_response->id ?? $index] = $this->handleResponse($_response);
+                $index++;
+            }
+            foreach ($this->sentContentIds as $sentContentId) {
+                if (!array_key_exists($sentContentId, $responses)) {
+                    $responses[$sentContentId] = new ApiResponse([
+                        'success' => false,
+                        'error' => new ResponseError([
+                            'type' => BadGatewayHttpException::class,
+                            'code' => ResponseError::ERRORCODE_HTTP_RESPONSE_ERROR,
+                            'message' => ['httpError' => 'Sent content not found in response!'],
+                        ]),
+                    ]);
+                }
+            }
+            return $responses;
+        } finally {
+            $this->sentContentIds = [];
         }
-
-        return $responses;
     }
 
     /**
