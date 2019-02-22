@@ -138,6 +138,11 @@ class Client extends BaseObject
     public $timeout = 180;
 
     /**
+     * @var int Maximal task count in batch request
+     */
+    public $batchLimit = 100;
+
+    /**
      * @var Client Shardimage PHP API service
      */
     private $service;
@@ -333,6 +338,7 @@ class Client extends BaseObject
      * Setting up async request
      * 
      * @param bool $enable
+     * @throws MethodNotAllowedHttpException
      */
     public function async($enable)
     {
@@ -374,9 +380,13 @@ class Client extends BaseObject
     /**
      * Sending deffered request.
      * @return array
+     * @throws InvalidCallException
      */
     private function doSend()
     {
+        if (!empty($this->sentContentIds) && count($this->sentContentIds) > $this->batchLimit) {
+            throw new InvalidCallException(sprintf("Request limit reached! Max %d requests per batch is accepted!", $this->batchLimit));
+        }
         $response = $this->request->send();
         $this->request = null;
         if ($response instanceof ApiResponse) {
