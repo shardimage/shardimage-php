@@ -77,16 +77,7 @@ abstract class Service extends BaseObject
             $this->lastError = isset($response->error->message) ? $response->error->message : 'Unknown error!';
             if ($this->client->softExceptionEnabled) {
                 if (isset($response->meta['statusCode']) ? $response->meta['statusCode'] : false) {
-                    $message = 'API error';
-                    $responseMessage = isset($response->error->message) ? $response->error->message : null;
-                    if (is_string($responseMessage)) {
-                        $message = $responseMessage;
-                    } elseif (is_array($responseMessage)) {
-                        foreach ($responseMessage as $attribute => $errors) {
-                            $message .= sprintf(' / %s: %s', $attribute, $this->manageErrorReplaces($errors));
-                        }
-                    }
-                    throw HttpException::newInstance($response->meta['statusCode'], $message, $response->error->code, is_array($responseMessage) ? $responseMessage : null);
+                    throw $response->error->exception;
                 }
                 throw new Exception('API error ' . (isset($response->error->code) ? $response->error->code : -1) . '!');
             }
@@ -103,25 +94,6 @@ abstract class Service extends BaseObject
     public function getLastError()
     {
         return $this->lastError;
-    }
-
-    /**
-     * @param string|array
-     * 
-     * @return string
-     */
-    private function manageErrorReplaces($errors)
-    {
-        if (is_array($errors)) {
-            $message = $errors[0];
-            $params = isset($errors[1]) ? $errors[1] : [];
-            $placeholders = [];
-            foreach ((array) $params as $name => $value) {
-                $placeholders['{' . $name . '}'] = $value;
-            }
-            return ($placeholders === []) ? $message : strtr($message, $placeholders);
-        }
-        return $errors;
     }
 
     /**
