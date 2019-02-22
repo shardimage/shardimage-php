@@ -12,6 +12,7 @@ namespace shardimage\shardimagephp\auth;
 use shardimage\shardimagephpapi\base\BaseObject;
 use shardimage\shardimagephpapi\base\caches\CacheInterface;
 use shardimage\shardimagephpapi\web\exceptions\BadGatewayHttpException;
+use shardimage\shardimagephpapi\base\exceptions\InvalidCallException;
 use shardimage\shardimagephpapi\base\exceptions\InvalidParamException;
 use shardimage\shardimagephpapi\web\exceptions\MethodNotAllowedHttpException;
 use shardimage\shardimagephpapi\api\Request as ApiRequest;
