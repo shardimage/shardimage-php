@@ -57,7 +57,6 @@ class UrlService extends Service
      *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
      *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
      *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
      *                         <li>seo - SEO filename
      *                         <li>security - "basic" or "token"
      *
@@ -68,6 +67,7 @@ class UrlService extends Service
         if (is_string($params)) {
             $params = ['url' => $params];
         }
+        unset($optParams['format']);
         $params = $this->client->fillParams(['cloudId', 'url'], $params);
 
         return $this->build('/r/http/'.urlencode($params['url']), $params, $optParams);
