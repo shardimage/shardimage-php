@@ -39,4 +39,13 @@ abstract class Target extends BaseObject
     }
 
     abstract public static function getType();
+
+    /**
+     * @inheritdoc
+     */
+    protected function getToArrayAttributes()
+    {
+        return array_merge(parent::getToArrayAttributes(), ['type']);
+    }
+
 }

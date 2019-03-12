@@ -60,4 +60,13 @@ abstract class AccessToken extends BaseObject
      * Getting the type of access token
      */
     abstract public function getType();
+
+    /**
+     * @inheritdoc
+     */
+    protected function getToArrayAttributes()
+    {
+        return array_merge(parent::getToArrayAttributes(), ['type']);
+    }
+
 }
