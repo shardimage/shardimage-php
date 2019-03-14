@@ -12,6 +12,7 @@ namespace shardimage\shardimagephp\services;
 use shardimage\shardimagephpapi\api\Response;
 use shardimage\shardimagephp\helpers\ArrayHelper;
 use shardimage\shardimagephp\models\image\Image;
+use shardimage\shardimagephpapi\web\exceptions\NotImplementedHttpException;
 
 /**
  * Shardimage upload service.
@@ -108,31 +109,11 @@ class UploadService extends Service
     /**
      * Makes a copy of an image.
      *
-     * @param array $params Required API parameters
-     *
-     * <li>cloudId - cloud ID
-     * <li>publicId - image ID
-     * <li>newCloudId - new cloud ID, if differs
-     * @param array $optParams Optional API parameters
-     *
-     * @return Image|Response
+     * @throws NotImplementedHttpException
      */
     public function copy($params, $optParams = [])
     {
-        if (isset($params['newCloudId'])) {
-            $uri = '/c/<cloudId>/o/<publicId>/copy/c/<newCloudId>';
-        } else {
-            $uri = '/c/<cloudId>/o/<publicId>/copy';
-        }
-
-        return $this->sendRequest(['cloudId', 'publicId'], [
-            'restAction' => 'create',
-            'uri' => $uri,
-            'params' => $params,
-            'getParams' => $optParams,
-        ], function ($response) {
-            return isset($response->data) ? new Image($response->data) : $response;
-        });
+        throw new NotImplementedHttpException('This method is under development in Shardimage API.');
     }
 
     /**
@@ -160,8 +141,8 @@ class UploadService extends Service
             'transformation',
         ]);
 
-        return $this->sendRequest(['cloudId', 'file'], [
-            'restAction' => 'create',
+        return $this->sendRequest(['cloudId', 'publicId'], [
+            'restAction' => 'update',
             'uri' => '/c/<cloudId>/o/<publicId>/modify',
             'params' => $params,
             'postParams' => array_merge($params, $optParams),
