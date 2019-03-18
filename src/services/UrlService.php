@@ -74,6 +74,33 @@ class UrlService extends Service
     }
 
     /**
+     * Creates the fetch URL for a remote image.
+     *
+     * @param array|string $params Required API parameters
+     *
+     * <li>cloudId - cloud ID
+     * <li>url - image URL
+     * @param array $optParams Optional API parameters
+     *
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>security - "basic" or "token"
+     *
+     * @return string
+     */
+    public function createFetch($params, $optParams = [])
+    {
+        if (is_string($params)) {
+            $params = ['url' => $params];
+        }
+
+        $params = $this->client->fillParams(['cloudId', 'url'], $params);
+
+        return $this->build('/f/'.$params['url'], $params, $optParams);
+    }
+
+    /**
      * Creates the URL for a Facebook profile picture.
      *
      * @param array|string $params Required API parameters
