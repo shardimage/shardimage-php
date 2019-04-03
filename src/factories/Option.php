@@ -67,7 +67,7 @@ class Option
      */
     public function httpHeader($headerName, $headerValue)
     {
-        return $this->addMultiItem('h', $headerName, strtr($headerValue, ['_' => '__']));
+        return $this->addMultiItem('h', $headerName, rawurlencode(strtr($headerValue, ['_' => '__'])));
     }
 
     /**
