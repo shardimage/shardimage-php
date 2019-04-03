@@ -11,6 +11,7 @@ namespace shardimage\shardimagephp\factories;
 
 class Option
 {
+
     const CACHE_PUBLIC = 'public';
     const CACHE_PRIVATE = 'private';
     const CACHE_NO_CACHE = 'no-cache';
@@ -58,6 +59,18 @@ class Option
     }
 
     /**
+     * Add custom http header to URL
+     *
+     * @param string $headerName
+     * @param string $headerValue
+     * @return \self
+     */
+    public function httpHeader($headerName, $headerValue)
+    {
+        return $this->addMultiItem('h', $headerName, strtr($headerValue, ['_' => '__']));
+    }
+
+    /**
      * Adds a new property item.
      *
      * @return \self
@@ -67,6 +80,19 @@ class Option
         $args = func_get_args();
         $this->items[$args[0]] = implode(':', $args);
 
+        return $this;
+    }
+
+    /**
+     * Adds repeating property item.
+     *
+     * @return \self
+     */
+    private function addMultiItem()
+    {
+        $args = func_get_args();
+        $optionKey = array_shift($args);
+        $this->items[] = sprintf("%s:%s", $optionKey, implode(',', $args));
         return $this;
     }
 
@@ -89,4 +115,5 @@ class Option
     {
         return $this->render();
     }
+
 }
