@@ -38,7 +38,7 @@ class AuthData extends BaseAuthData
     public function credentials()
     {
         if (isset($this->oneTimeHash)) {
-            return ['one-time' => $this->oneTimeHash];
+            return ['token' => $this->oneTimeHash];
         } else {
             return [
                 'Key' => $this->key,
