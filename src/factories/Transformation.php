@@ -625,19 +625,6 @@ class Transformation
     }
 
     /**
-     * Sets the color for the background, when a layer extends outside the
-     * main image.
-     *
-     * @param type $color
-     *
-     * @return \self
-     */
-    public function eBackground($color)
-    {
-        return $this->addItem('ebg', $color);
-    }
-
-    /**
      * @param type $color
      *
      * @return \self

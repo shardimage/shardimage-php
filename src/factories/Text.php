@@ -127,11 +127,6 @@ class Text
     const ALIGN_CENTER = 'center';
 
     /**
-     * Justified text alignment.
-     */
-    const ALIGN_JUSTIFY = 'justify';
-
-    /**
      * Text alignment to the start.
      */
     const ALIGN_START = 'start';
@@ -277,30 +272,6 @@ class Text
     }
 
     /**
-     * Sets the letter spacing.
-     * 
-     * @param int $letterSpacing Letter spacing in pixels
-     * 
-     * @return \self
-     */
-    public function letterSpacing($letterSpacing)
-    {
-        return $this->addItem('letterSpacing', 'letter-spacing', $letterSpacing);
-    }
-
-    /**
-     * Sets the line spacing.
-     * 
-     * @param int $lineSpacing Line spacing in pixels
-     *
-     * @return type
-     */
-    public function lineSpacing($lineSpacing)
-    {
-        return $this->addItem('lineSpacing', 'ls', $lineSpacing);
-    }
-
-    /**
      * Sets the text alignment.
      * 
      * @param string $align Text alignment.
@@ -308,7 +279,6 @@ class Text
      *                      <li>"left"
      *                      <li>"center"
      *                      <li>"right"
-     *                      <li>"justify"
      *                      <li>"start"
      *                      <li>"end"
      *
