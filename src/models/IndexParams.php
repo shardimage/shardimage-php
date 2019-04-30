@@ -36,13 +36,17 @@ abstract class IndexParams extends BaseObject
     public $projection = [];
 
     /**
-     * 
+     * @inheritDoc
      */
     public function toArray($excludeEmpty = false)
     {
         $result = parent::toArray($excludeEmpty);
         if (isset($result['projection']) && !empty($result['projection'])) {
             $result['projection'] = implode(',', $result['projection']);
+        }
+        if (isset($result['nextPageToken']) && !empty($result['nextPageToken'])) {
+            $result['pageToken'] = $result['nextPageToken'];
+            unset($result['nextPageToken']);
         }
 
         return $result;

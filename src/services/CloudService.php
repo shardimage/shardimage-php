@@ -31,7 +31,7 @@ class CloudService extends Service
      * <li>projection - an array of projection
      * <li>order - the order of results: name, -name, created, -created
      * <li>maxResults - number of results
-     * <li>nextPageToken - token for next result page
+     * <li>pageToken - token for next result page
      *
      * @return Index
      */

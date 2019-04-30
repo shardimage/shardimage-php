@@ -33,7 +33,7 @@ class ImageService extends Service
      * <li>projection - an array of projection flags: noExif, noObject, noDimensions
      * <li>order - the order of results: latest, publicId
      * <li>maxResults - number of results
-     * <li>nextPageToken - token for next result page
+     * <li>pageToken - token for next result page
      * <li>nextPageTokenType - type of paging token: shortTime, longTime
      * <li>prefix - prefix of publicId for filtering
      * <li>byTag - image tag for filtering
@@ -45,9 +45,6 @@ class ImageService extends Service
         if ($optParams instanceof IndexParams) {
             $optParams = $optParams->toArray(true);
         }
-        ArrayHelper::changeKeys($optParams, [
-            'nextPageToken' => 'pageToken',
-        ]);
         if (is_string($params)) {
             $params = ['cloudId' => $params];
         }

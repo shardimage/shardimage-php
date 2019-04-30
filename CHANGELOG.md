@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-alpha17] - 2019-04-30
+### Change
+ - **[BC BREAK]** Changed `nextPageToken` to `pageToken` in API request. Unchanged in `IndexParams` abstract class, so usage is unchanged however this change can break backward compatibility.
+
 ## [1.0.0-alpha16] - 2019-04-15
 ### Removed
  - Removed functions that are waiting to be optimized and completed.

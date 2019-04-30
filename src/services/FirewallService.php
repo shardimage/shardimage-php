@@ -30,7 +30,7 @@ class FirewallService extends Service
      * <li>projection - an array of projection flags: noRules, noClouds, noCloudIds
      * <li>order - the order of results: name, -name, created, -created
      * <li>maxResults - number of results
-     * <li>nextPageToken - token for next result page
+     * <li>pageToken - token for next result page
      *
      * @return Index
      */
