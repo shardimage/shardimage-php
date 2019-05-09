@@ -959,6 +959,18 @@ class Transformation
     }
 
     /**
+     * Sets the given page number.
+     *
+     * @param int $pageNumber
+     *
+     * @return \self
+     */
+    public function page($pageNumber)
+    {
+        return $this->addItem('page', $pageNumber);
+    }
+
+    /**
      * Sets the given parameter item into the chain.
      *
      * @param string $parameter

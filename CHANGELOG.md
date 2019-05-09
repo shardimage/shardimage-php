@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-alpha18] - 2019-05-09
+### Add
+ - Added `page` transformation. Can be used for multi-page PDF documents.
+
 ## [1.0.0-alpha17] - 2019-04-30
 ### Change
  - **[BC BREAK]** Changed `nextPageToken` to `pageToken` in API request. Unchanged in `IndexParams` abstract class, so usage is unchanged however this change can break backward compatibility.
