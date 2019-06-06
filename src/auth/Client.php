@@ -19,6 +19,7 @@ use shardimage\shardimagephpapi\api\Request as ApiRequest;
 use shardimage\shardimagephpapi\api\Response as ApiResponse;
 use shardimage\shardimagephpapi\web\Request as WebRequest;
 use shardimage\shardimagephpapi\api\ResponseError;
+use shardimage\shardimagephpapi\services\dump\DumpServiceInterface;
 use shardimage\shardimagephp\services\AccessTokenService;
 use shardimage\shardimagephp\services\SuperBackupService;
 use shardimage\shardimagephp\services\BillingService;
@@ -144,6 +145,11 @@ class Client extends BaseObject
     public $batchLimit = 100;
 
     /**
+     * @var DumpServiceInterface dumping service object
+     */
+    public $dumpService;
+
+    /**
      * @var Client Shardimage PHP API service
      */
     private $service;
@@ -196,7 +202,7 @@ class Client extends BaseObject
         $this->parseApiConfig();
         if ((isset($this->apiSecret)||isset($this->imageSecret)) && !isset($this->apiKey)) {
             throw new InvalidParamException('Invalid Client, apiKey is required if you use apiSecret or imageSecret!');
-        } 
+        }
         $this->service = new ClientService([
             'host' => $this->apiHost,
             'authData' => new AuthData([
@@ -213,6 +219,7 @@ class Client extends BaseObject
             'cache' => $this->cache,
             'cacheExpiration' => $this->cacheExpiration,
             'timeout' => $this->timeout,
+            'dumpService' => $this->dumpService,
         ]);
         $this->imageHostname = parse_url($this->imageHost, PHP_URL_HOST);
     }
