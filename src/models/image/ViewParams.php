@@ -13,12 +13,25 @@ use shardimage\shardimagephpapi\base\BaseObject;
 
 class ViewParams extends BaseObject
 {
-    const PROJECTION_NO_EXIF = 'noExif';
-    const PROJECTION_NO_OBJECT = 'noObject';
-    const PROJECTION_NO_DIMENSIONS = 'noDimensions';
 
+    const PROJECTION_NO_OBJECT = 'noObject';
+    const PROJECTION_NO_EXIF = 'noExif';
+    const PROJECTION_NO_DIMENSIONS = 'noDimensions';
+    const PROJECTION_METADATA = 'metadata';
+    const PROJECTION_METADATA_HR = 'metadataHR';
+    const PROJECTION_METADATA_XML = 'metadataXML';
+    const PROJECTION_NO_TAGS = 'noTags';
+    const PROJECTION_DETECTION = 'detection';
+    const PROJECTION_SUPERBACKUP_INFO = 'superBackupInfo';
+
+    /**
+     * @var array
+     */
     public $projection = [];
 
+    /**
+     * @inheritDoc
+     */
     public function toArray($excludeEmpty = false)
     {
         $result = parent::toArray($excludeEmpty);
@@ -28,4 +41,5 @@ class ViewParams extends BaseObject
 
         return $result;
     }
+
 }

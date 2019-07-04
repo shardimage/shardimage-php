@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @link https://www.shardimage.com/
+ *
+ * @copyright Copyright (c) 2018 Shardimage
+ * @license https://github.com/shardimage/shardimage-php/blob/master/LICENCE.md
+ */
+
+namespace shardimage\shardimagephp\models\superbackuplog;
+
+use shardimage\shardimagephp\models\Index as BaseIndex;
+
+class Index extends BaseIndex
+{
+
+    /**
+     * @var float
+     */
+    public $lastScannedTime;
+
+}

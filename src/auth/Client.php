@@ -22,6 +22,7 @@ use shardimage\shardimagephpapi\api\ResponseError;
 use shardimage\shardimagephpapi\services\dump\DumpServiceInterface;
 use shardimage\shardimagephp\services\AccessTokenService;
 use shardimage\shardimagephp\services\SuperBackupService;
+use shardimage\shardimagephp\services\SuperBackupLogService;
 use shardimage\shardimagephp\services\BillingService;
 use shardimage\shardimagephp\services\CloudService;
 use shardimage\shardimagephp\services\DataService;
@@ -324,6 +325,14 @@ class Client extends BaseObject
     public function getUrlService()
     {
         return $this->getService('Url');
+    }
+
+    /**
+     * @return SuperBackupLogService
+     */
+    public function getSuperBackupLogService()
+    {
+        return $this->getService('SuperBackupLog');
     }
 
     /**

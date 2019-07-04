@@ -18,6 +18,7 @@ use shardimage\shardimagephp\models\superbackup\targets\MicrosoftAzureStorageTar
 
 class SuperBackup extends BaseObject
 {
+
     const FULL_BACKUP_STATUS_PROCESSING = 'processing';
     const FULL_BACKUP_STATUS_COMPLETE = 'complete';
     const FULL_BACKUP_STATUS_WAITING = 'waiting';
@@ -43,6 +44,11 @@ class SuperBackup extends BaseObject
      * @var AmazonS3Target|CloudinaryTarget|GoogleCloudStorageTarget|MicrosoftAzureStorageTarget
      */
     public $target;
+
+    /**
+     * @var bool turning on logging the successful operations
+     */
+    public $loggingSuccessfulOperations;
 
     /**
      * @var integer
@@ -89,4 +95,5 @@ class SuperBackup extends BaseObject
         }
         $this->ensureClass('cloud', Cloud::class);
     }
+
 }

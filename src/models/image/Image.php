@@ -13,6 +13,7 @@ use shardimage\shardimagephpapi\base\BaseObject as BaseObject;
 
 class Image extends BaseObject
 {
+
     const ORIENTATION_TOP_LEFT = 1;
     const ORIENTATION_TOP_RIGHT = 2;
     const ORIENTATION_BOTTOM_RIGHT = 3;
@@ -48,9 +49,18 @@ class Image extends BaseObject
     public $eyes;
     public $bodies;
 
+    /**
+     * @var array Super backup information
+     */
+    public $superBackup;
+
+    /**
+     * @inheritDoc
+     */
     public function init()
     {
         $this->ensureClass('dimensions', Dimensions::class);
         $this->ensureClass('object', ImageObject::class);
     }
+
 }
