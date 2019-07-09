@@ -406,6 +406,7 @@ class Client extends BaseObject
                 throw new InvalidCallException(sprintf("Request limit reached! Max %d requests per batch is accepted!", $this->batchLimit));
             }
             $response = $this->request->send();
+            $originalResponse = $response;
             $this->request = null;
             if ($response instanceof ApiResponse) {
                 $response = [$response];
@@ -418,14 +419,18 @@ class Client extends BaseObject
             }
             foreach ($this->sentContentIds as $sentContentId) {
                 if (!array_key_exists($sentContentId, $responses)) {
-                    $responses[$sentContentId] = new ApiResponse([
-                        'success' => false,
-                        'error' => new ResponseError([
-                            'type' => BadGatewayHttpException::class,
-                            'code' => ResponseError::ERRORCODE_HTTP_RESPONSE_ERROR,
-                            'message' => ['httpError' => 'Sent content not found in response!'],
-                        ]),
-                    ]);
+                    if ($originalResponse instanceof ApiResponse) {
+                        $responses[$sentContentId] = $originalResponse;
+                    } else {
+                        $responses[$sentContentId] = new ApiResponse([
+                            'success' => false,
+                            'error' => new ResponseError([
+                                'type' => BadGatewayHttpException::class,
+                                'code' => ResponseError::ERRORCODE_HTTP_RESPONSE_ERROR,
+                                'message' => ['httpError' => 'Sent content not found in response!'],
+                                    ]),
+                        ]);
+                    }
                 }
             }
             return $responses;
