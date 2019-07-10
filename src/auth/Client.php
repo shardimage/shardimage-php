@@ -407,7 +407,6 @@ class Client extends BaseObject
             }
             $response = $this->request->send();
             $originalResponse = $response;
-            $this->request = null;
             if ($response instanceof ApiResponse) {
                 $response = [$response];
             }
@@ -435,6 +434,7 @@ class Client extends BaseObject
             }
             return $responses;
         } finally {
+            $this->request = null;
             $this->sentContentIds = [];
         }
     }
