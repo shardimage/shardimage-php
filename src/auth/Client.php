@@ -451,6 +451,7 @@ class Client extends BaseObject
         if (isset($this->callbacks[$response->id])) {
             return call_user_func_array($this->callbacks[$response->id], ['response' => $response]);
         }
+        return $response;
     }
 
     /**
