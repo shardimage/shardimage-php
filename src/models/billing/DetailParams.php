@@ -19,7 +19,7 @@ class DetailParams extends BaseObject
     const DATE_PARTITION_HOUR = 'hour';
     const DATE_PARTITION_QUARTER_HOUR = 'quarterHour';
     const GROUP_CU = 'cu';
-    const GROUP_EGRESS = 'egress';
+    const GROUP_NETWORK = 'network';
     const GROUP_STORAGE = 'storage';
     const PROJECTION_ESTIMATED_AMOUNT = 'estimatedAmount';
     const PROJECTION_BY_CLOUD = 'byCloud';
