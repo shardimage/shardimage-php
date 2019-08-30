@@ -191,12 +191,12 @@ class Text
 
     /**
      * Sets the font weight.
-     * 
+     *
      * @param string $weight Font weight
      *                       <br>
      *                       <li>"normal"
      *                       <li>"bold"
-     * 
+     *
      * @return \self
      */
     public function weight($weight)
@@ -206,13 +206,13 @@ class Text
 
     /**
      * Sets the text decoration.
-     * 
+     *
      * @param string $decoration Text decoration
      *                           <br>
      *                           <li>"underline"
      *                           <li>"overline"
      *                           <li>"strike"
-     * 
+     *
      * @return \self
      */
     public function decoration($decoration)
@@ -237,7 +237,7 @@ class Text
 
     /**
      * Sets the font size.
-     * 
+     *
      * @param int $size Font size in pixels
      *
      * @return \self
@@ -249,7 +249,7 @@ class Text
 
     /**
      * Sets the stroke color.
-     * 
+     *
      * @param string $color Color in CSS format
      *
      * @return \self
@@ -273,7 +273,7 @@ class Text
 
     /**
      * Sets the text alignment.
-     * 
+     *
      * @param string $align Text alignment.
      *                      <br>
      *                      <li>"left"
@@ -301,7 +301,7 @@ class Text
 
     /**
      * Turns on base64 encoding for the text.
-     * 
+     *
      * @return \self
      */
     public function base64()
@@ -333,14 +333,14 @@ class Text
         if (!empty($this->items)) {
             $parts[] = implode(',', $this->items);
         }
-        $parts[] = isset($this->items['base64']) ? self::base64Encode($this->text) : urlencode($this->text);
+        $parts[] = isset($this->items['base64']) ? self::base64Encode($this->text) : rawurlencode($this->text);
 
         return implode(':', $parts);
     }
 
     /**
      * Magic method for string casting.
-     * 
+     *
      * @return string
      */
     public function __toString()

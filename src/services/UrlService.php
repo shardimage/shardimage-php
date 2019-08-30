@@ -19,13 +19,13 @@ class UrlService extends Service
 {
     /**
      * Creates the URL for an internal image.
-     * 
+     *
      * @param array|string $params Required API parameters
      *
      * <li>cloudId - cloud ID
      * <li>publicID - image ID
      * @param array $optParams Optional API parameters
-     *                          
+     *
      *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
      *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
      *                         <li>version - version number (to force cache miss)
@@ -42,7 +42,7 @@ class UrlService extends Service
         }
         $params = $this->client->fillParams(['cloudId', 'publicId'], $params);
 
-        return $this->build('/i/'.urlencode($params['publicId']), $params, $optParams);
+        return $this->build('/i/'.rawurlencode($params['publicId']), $params, $optParams);
     }
 
     /**
@@ -70,7 +70,7 @@ class UrlService extends Service
         unset($optParams['format']);
         $params = $this->client->fillParams(['cloudId', 'url'], $params);
 
-        return $this->build('/r/http/'.urlencode($params['url']), $params, $optParams);
+        return $this->build('/r/http/'.rawurlencode($params['url']), $params, $optParams);
     }
 
     /**
@@ -207,14 +207,14 @@ class UrlService extends Service
     {
         $params = $this->client->fillParams(['cloudId', 'cloudinaryCloud', 'cloudinaryImage'], $params);
 
-        return $this->build('/r/cloudinary/'.urlencode($params['cloudinaryCloud'].'/'.$params['cloudinaryImage']), $params, $optParams);
+        return $this->build('/r/cloudinary/'.rawurlencode($params['cloudinaryCloud'].'/'.$params['cloudinaryImage']), $params, $optParams);
     }
 
     /**
      * Creates the URL for a Wikimedia commons image.
      *
      * @param array|string $params Required API parameters
-     * 
+     *
      * <li>cloudId - cloud ID
      * <li>wikimediaImage - Wikimedia image URL
      * @param array $optParams Optional API parameters
@@ -235,7 +235,7 @@ class UrlService extends Service
         }
         $params = $this->client->fillParams(['cloudId', 'wikimediaImage'], $params);
 
-        return $this->build('/r/commons/'.urlencode($params['wikimediaImage']), $params, $optParams);
+        return $this->build('/r/commons/'.rawurlencode($params['wikimediaImage']), $params, $optParams);
     }
 
     /**
