@@ -132,8 +132,8 @@ $fileName = 'Example';
 $result = $client->getUploadService()->upload([
     'file' => $file,
     'cloudId' => <cloudId>,
-], [    //optional parameters
     'publicId' => $fileName,
+], [    //optional parameters
     'tags' => [
         'example',
         'dump'
@@ -146,6 +146,8 @@ If everything goes alright, the `$result` variable will contain `shardimage\shar
 Multithread upload is very similar, we need to turn on the `defer` option before the upload. Turning it off will send the collected datas.
 
 ```php
+use shardimage\shardimagephp\helpers\UploadHelper;
+
 $files = [
     'file1.jpg',
     'file2.jpg',
@@ -157,6 +159,7 @@ $client->defer(true); //turning on
 foreach ($files as $file) {
     $client->getUploadService()->upload([
         'file' => $file,
+        'publicId' => UploadHelper::generateRandomPublicId(32),
     ], [
         'tags' => [
             'batch',

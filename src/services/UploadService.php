@@ -22,15 +22,16 @@ class UploadService extends Service
     /**
      * Uploads an image from a local source.
      *
-     * @param array|string|resource $params Required API parameters
+     * @param array $params Required API parameters
      *
      * <li>file - source (string - filepath, array - a $_FILES entry,
      * resource - an opened file resource (@see fopen()),
      * an array with a 'file' key consisting of the above 3)
-     * <li>cloudId - cloud ID
-     * @param array $optParams Optional API parameters
-     * 
      * <li>publicId - image ID
+     * <li>cloudId - cloud ID
+     *
+     * @param array $optParams Optional API parameters
+     *
      * <li>format - image format
      * <li>transformation - transformations
      * <li>tags - tags
@@ -41,10 +42,14 @@ class UploadService extends Service
     public function upload($params, $optParams = [])
     {
         $resource = null;
-        if (is_string($params) || is_resource($params)) {
-            $params = ['file' => $params];
-        } elseif (is_array($params) && isset($params['tmp_name'])) {
-            $params = ['file' => $params['tmp_name']];
+        if (!is_array($params)) {
+            throw new \InvalidArgumentException('First parameter ($params) must to be an array!');
+        }
+        if (!isset($params['publicId'])) {
+            throw new \InvalidArgumentException('You must set publicId in $params parameter!');
+        }
+        if (!isset($params['file']) && isset($params['tmp_name'])) {
+            $params['file'] = $params['tmp_name'];
         }
         if (isset($params['file']) && is_array($params['file']) && isset($params['file']['tmp_name'])) {
             $params['file'] = $params['file']['tmp_name'];
@@ -52,6 +57,8 @@ class UploadService extends Service
         if (isset($params['file']) && is_string($params['file'])) {
             $resource = $params['file'] = fopen($params['file'], 'r');
         }
+        $optParams['publicId'] = $params['publicId'];
+        unset($params['publicId']);
         ArrayHelper::stringify($optParams, [
             'transformation',
         ]);
@@ -72,14 +79,14 @@ class UploadService extends Service
 
     /**
      * Uploads an image from a remote source.
-     * 
-     * @param array|string $params Required API parameters
+     *
+     * @param array $params Required API parameters
      *
      * <li>resource - source (string - URL, an array with a 'remote' key consisting
      * of the above)
-     * @param array $optParams Optional API parameters
-     * 
      * <li>publicId - image ID
+     * @param array $optParams Optional API parameters
+     *
      * <li>format - image format
      * <li>transformation - transformations
      * <li>tags - tags
@@ -89,9 +96,14 @@ class UploadService extends Service
      */
     public function uploadRemote($params, $optParams = [])
     {
-        if (is_string($params)) {
-            $params = ['resource' => $params];
+        if (!is_array($params)) {
+            throw new \InvalidArgumentException('First parameter ($params) must to be an array!');
         }
+        if (!isset($params['publicId'])) {
+            throw new \InvalidArgumentException('You must set publicId in $params parameter!');
+        }
+        $optParams['publicId'] = $params['publicId'];
+        unset($params['publicId']);
         ArrayHelper::stringify($optParams, [
             'transformation',
         ]);
