@@ -71,6 +71,16 @@ class Option
     }
 
     /**
+     * Add strict secure hash option to URL
+     *
+     * @return \self
+     */
+    public function strictSecureHash()
+    {
+        return $this->addItem('strictSecureHash');
+    }
+
+    /**
      * Adds a new property item.
      *
      * @return \self
