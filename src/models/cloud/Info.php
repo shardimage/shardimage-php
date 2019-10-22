@@ -13,6 +13,6 @@ use shardimage\shardimagephpapi\base\BaseObject;
 
 class Info extends BaseObject
 {
-    public $itemCount;
-    public $storageSize;
+    public $estimatedItemCount;
+    public $estimatedStorageSize;
 }
