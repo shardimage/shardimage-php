@@ -135,6 +135,42 @@ class ImageService extends Service
     }
 
     /**
+     * Updates an image tags or plugins.
+     *
+     * @param Image|array $params Required API parameters
+     *
+     * <li>cloudId - cloud ID
+     * <li>publicId - image ID
+     * @param array $optParams Optional API parameters
+     *
+     * <li>tags - an array with the new tags. It will overwrite the image's current tags.
+     * <li>plugin - string plugin to execute.
+     *
+     * @return type
+     */
+    public function update($params, $optParams = [])
+    {
+        if ($params instanceof Image) {
+            $imageObject = $params;
+            $params = [];
+            $params['cloudId'] = $imageObject->cloudId;
+            $params['publicId'] = $imageObject->publicId;
+        }
+        return $this->sendRequest(['cloudId', 'publicId'], [
+            'restAction' => 'update',
+            'uri' => '/c/<cloudId>/o/<publicId>',
+            'params' => $params,
+            'postParams' => $optParams,
+        ], function ($response) use ($params) {
+            if ($response->data && !isset($response->data['cloudId'])) {
+                $response->data['cloudId'] = $this->client->getParam($params, 'cloudId');
+            }
+
+            return isset($response->data) ? new Image($response->data) : $response;
+        });
+    }
+
+    /**
      * Deletes an image.
      *
      * @param array $params Required API parameters

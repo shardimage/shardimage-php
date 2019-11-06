@@ -24,6 +24,9 @@ class Image extends BaseObject
     const ORIENTATION_LEFT_BOTTOM = 8;
     const FORMAT_JPEG = 'jpg';
     const FORMAT_PNG = 'png';
+    const PLUGIN_METADATA_SAVE = 'metadata.save';
+    const PLUGIN_METADATA_REFRESH = 'metadata.refresh';
+    const PLUGIN_METADATA_CLEAR = 'metadata.clear';
 
     public $publicId;
     public $cloudId;

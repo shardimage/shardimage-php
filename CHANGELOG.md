@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-alpha29] - 2019-11-06
+### Add
+ - Added image update function to the image service class. It can be used to change image tags and execute plugins on the image.
+ - Added plugin constans to the Image model class.
+
 ## [1.0.0-alpha28] - 2019-10-22
 ### Change
  - The `itemCount` and `storageSize` properties changed to `estimatedItemCount` and `estimatedStorageSize`.
