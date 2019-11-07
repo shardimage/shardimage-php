@@ -444,7 +444,7 @@ class Transformation
     }
 
     /**
-     * @param type $amount
+     * @param int $amount
      *
      * @return \self
      */
@@ -454,7 +454,7 @@ class Transformation
     }
 
     /**
-     * @param type $amount
+     * @param int $amount
      *
      * @return \self
      */
@@ -464,13 +464,23 @@ class Transformation
     }
 
     /**
-     * @param type $amount
+     * @param int $amount
      *
      * @return \self
      */
     public function tintRed($amount)
     {
         return $this->addItem('e', 'red', $amount);
+    }
+
+    /**
+     * @param int $amount
+     *
+     * @return \self
+     */
+    public function tint($amount)
+    {
+        return $this->addItem('e', 'tint', $amount);
     }
 
     /**
