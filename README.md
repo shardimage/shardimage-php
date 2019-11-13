@@ -1,5 +1,9 @@
 # Shardimage PHP package
-
+[![Packagist](https://img.shields.io/packagist/dt/shardimage/shardimage-php)](https://packagist.org/packages/shardimage/shardimage-php)
+[![Packagist](https://img.shields.io/packagist/l/shardimage/shardimage-php)](https://packagist.org/packages/shardimage/shardimage-php)
+[![GitHub issues](https://img.shields.io/github/issues/shardimage/shardimage-php)](https://github.com/shardimage/shardimage-php/issues)
+[![Packagist Version](https://img.shields.io/packagist/v/shardimage/shardimage-php)](https://packagist.org/packages/shardimage/shardimage-php)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/shardimage/shardimage-php)](](https://packagist.org/packages/shardimage/shardimage-php))
 ## Introduction
 
 Official PHP package for using Shardimage application.
