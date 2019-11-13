@@ -40,4 +40,18 @@ class ImageUrlAccessTokenExtra extends BaseObject
         parent::init();
         $this->ensureClass('authentication', ImageUrlAccessTokenExtraAuthentication::class);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray($excludeEmpty = false)
+    {
+        if ($this->authentication instanceof ImageUrlAccessTokenExtraAuthentication) {
+            $auth = $this->authentication->toArray();
+            $this->authentication = $auth['authentication'] ?? null;
+        }
+        $result = parent::toArray(true);
+        $this->ensureClass('authentication', ImageUrlAccessTokenExtraAuthentication::class);
+        return $result;
+    }
 }

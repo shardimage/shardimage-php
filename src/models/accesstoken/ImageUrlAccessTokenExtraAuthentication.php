@@ -17,12 +17,45 @@ use shardimage\shardimagephpapi\base\BaseObject;
 class ImageUrlAccessTokenExtraAuthentication extends BaseObject
 {
     /**
-     * @var string
+     * Array of authentication data. The format should be:
+     *
+     * ```php
+     * $this->authentication = [
+     *     '<username1>' => '<password1>',
+     *     '<username2>' => '<password2>',
+     * ];
+     * ```
+     *
+     * @var array
      */
-    public $user;
+    public $authentication;
 
     /**
-     * @var string
+     * @inheritDoc
      */
-    public $password;
+    public function __construct($config = [])
+    {
+        if ($config) {
+            $this->authentication = $config;
+        }
+        $this->init();
+    }
+
+    /**
+     * Setting up authentication data.
+     *
+     * @param string $username
+     * @param string $password
+     *
+     * @return $this the object itself
+     */
+    public function setAuthenticationData($username, $password)
+    {
+        if (!is_array($this->authentication)) {
+            $this->authentication = [];
+        }
+        $this->authentication[$username] = $password;
+
+        return $this;
+    }
 }
