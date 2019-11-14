@@ -244,7 +244,7 @@ class Text
      */
     public function size($size)
     {
-        return $this->addItem('size', 'size', $size);
+        return $this->addItem('size', 's', $size);
     }
 
     /**
@@ -332,6 +332,8 @@ class Text
         $parts = [];
         if (!empty($this->items)) {
             $parts[] = implode(',', $this->items);
+        } else {
+            $this->text = ':' . $this->text;
         }
         $parts[] = isset($this->items['base64']) ? self::base64Encode($this->text) : rawurlencode($this->text);
 

@@ -260,7 +260,7 @@ class Transformation
     }
 
     /**
-     * @param string|Text $text
+     * @param Text $text
      *
      * @return \self
      */
@@ -270,7 +270,7 @@ class Transformation
     }
 
     /**
-     * @param string|Text $text
+     * @param Text $text
      *
      * @return \self
      */
