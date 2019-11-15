@@ -85,7 +85,7 @@ class Condition
      */
     private function render()
     {
-        return implode('_', $this->parts);
+        return implode('_', $this->items);
     }
 
     /**
