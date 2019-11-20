@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0-alpha28] - 2019-10-22
 ### Change
- - The `itemCount` and `storageSize` properties changed to `estimatedItemCount` and `estimatedStorageSize`.
+ - **[BC BREAK]** The `itemCount` and `storageSize` properties changed to `estimatedItemCount` and `estimatedStorageSize`.
 
 ## [1.0.0-alpha27] - 2019-10-17
 ### Add
@@ -44,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0-alpha26] - 2019-09-20
 ### Change
- - Public ID is required during image upload.
+ - **[BC BREAK]** Public ID is required during image upload.
 
 ### Add
  - `StringHelper` class for string functions.
@@ -56,7 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0-alpha24] - 2019-08-08
 ### Change
- - `DetailParams` class `GROUP_EGRESS` constant changed to `GROUP_NETWORK`
+ - **[BC BREAK]** `DetailParams` class `GROUP_EGRESS` constant changed to `GROUP_NETWORK`
 
 ## [1.0.0-alpha23] - 2019-07-18
 ### Fix
