@@ -16,6 +16,7 @@ use shardimage\shardimagephpapi\base\BaseObject;
  */
 class ImageUrlAccessTokenExtraAuthentication extends BaseObject
 {
+
     /**
      * Array of authentication data. The format should be:
      *
@@ -57,5 +58,22 @@ class ImageUrlAccessTokenExtraAuthentication extends BaseObject
         $this->authentication[$username] = $password;
 
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray($excludeEmpty = false)
+    {
+        foreach ($this->authentication as $username => $password) {
+            if ($password instanceof PasswordHashInterface) {
+                $this->authentication[$username] = $password->toArray();
+            } elseif (is_string($password)) {
+                continue;
+            } else {
+                throw new \RuntimeException(sprintf('Password must to be string or object which implements the %s interface!', PasswordHashInterface::class));
+            }
+        }
+        return parent::toArray($excludeEmpty);
     }
 }

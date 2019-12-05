@@ -294,7 +294,7 @@ class UrlService extends Service
                     if (!$this->client->apiAccessTokenSecret){
                         throw new InvalidConfigException('The apiAccessTokenSecret must be specified!');
                     }
-                    $security = '/s-token:'.$this->client->apiAccessToken.','.SecurityHelper::generateTokenHash($this->client->imageHostname, ltrim($url, '/'), $this->client->apiAccessToken, $this->client->apiAccessTokenSecret);
+                    $security = '/s-token2:'.$this->client->apiAccessToken.','.SecurityHelper::generateImageTokenSecretSignature($this->client->imageHostname, ltrim($url, '/'), $this->client->apiAccessToken, $this->client->apiAccessTokenSecret);
                     break;
             }
         }
