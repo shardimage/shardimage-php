@@ -13,6 +13,7 @@ use shardimage\shardimagephpapi\base\BaseObject;
 use shardimage\shardimagephp\auth\Client;
 use shardimage\shardimagephpapi\api\Response;
 use shardimage\shardimagephpapi\base\exceptions\Exception;
+use shardimage\shardimagephpapi\base\exceptions\InvalidParamException;
 use shardimage\shardimagephpapi\web\exceptions\HttpException;
 
 /**
@@ -63,6 +64,9 @@ abstract class Service extends BaseObject
      */
     protected function sendRequest($requiredParams, $params, $callback)
     {
+        if (isset($params['getParams']) && is_array($params['getParams'])) {
+            $params['getParams'] = $this->formatGetParams($params['getParams']);
+        }
         $response = $this->client->send($requiredParams, array_merge($params, [
             'module' => static::getModule(),
             'controller' => static::getController(),
@@ -84,6 +88,28 @@ abstract class Service extends BaseObject
         }
 
         return $response;
+    }
+
+    /**
+     * Format get parameters from array to joined string.
+     *
+     * @param array $getParams
+     * @return array
+     * @throws InvalidParamException
+     */
+    protected function formatGetParams(array $getParams): array
+    {
+        foreach ($getParams as $name => $value) {
+            if (is_object($value)) {
+                $value = (string) $value;
+            }
+            if (is_array($value)) {
+                $getParams[$name] = join(',', $value);
+            } elseif (!is_string($value) && !is_numeric($value)) {
+                throw new InvalidParamException('The get parameter value must to be string, numeric or an array containing the previous types.');
+            }
+        }
+        return $getParams;
     }
 
     /**
