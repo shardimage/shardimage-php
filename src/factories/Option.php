@@ -59,6 +59,14 @@ class Option
     }
 
     /**
+     * Add nofw option to URL for skipping firewall rules
+     */
+    public function noFirewall()
+    {
+        return $this->addItem('nofw');
+    }
+
+    /**
      * Add custom http header to URL
      *
      * @param string $headerName

@@ -190,6 +190,22 @@ $client->getImageService()->delete([
 ]);
 ```
 
+#### Using `UploadBuilder`
+
+Using the builder class can make uploading easier by giving a developer friendly usage to build up upload parameters.
+
+```php
+use shardimage\shardimagephp\builders\UploadBuilder;
+
+$builder = (new UploadBuilder())
+    ->withPrefix('SDK-TEST-')
+    ->withRandomPublicId(16)
+    ->withTags(['tag1'])
+    ->withAddedTags(['added-tag'])
+    ->withFilePath($filePath);
+$result = $client->getUploadService()->upload($builder->build());
+```
+
 ### Hosting images
 
 Hosting the uploaded images with the packgate is basically generating their URL. Using the `UrlService` class you can build up remote image URLs also to serve them through the Shardimage.
