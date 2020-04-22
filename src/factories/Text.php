@@ -149,8 +149,28 @@ class Text
     const FONT_TINOS = 'tinos';
     const FONT_YELLOWTAIL = 'yellowtail';
     const FONT_XIAOWEI = 'xiaowei';
-    const FONT_KUHEI = 'kuhei';
     const FONT_SHEKARI = 'shekari';
+    const FONT_BRUSHHANDNEW = 'BrushHandNew';
+    const FONT_CAPTURESMALLZ = 'CaptureSmallz';
+    const FONT_CAPTURESMALLZCLEAN = 'CaptureSmallzClean';
+    const FONT_DLACRUZ = 'dLaCruz';
+    const FONT_EVERYTHING = 'Everything';
+    const FONT_INDIANAJONAS48 = 'IndianaJonas48';
+    const FONT_JUSTTELLMEWHATVERSION2 = 'JustTellMeWhatVersion2';
+    const FONT_KGHAPPY = 'KGHappy';
+    const FONT_KGHAPPYSHADOWS = 'KGHappyShadows';
+    const FONT_KGHAPPYSOLID = 'KGHappySolid';
+    const FONT_KGMISSKINDERGARTEN = 'KGMissKindergarten';
+    const FONT_MFCANDY = 'MFCandy';
+    const FONT_MFPLEXUS = 'MFPlexus';
+    const FONT_NATURALBEAUTYPERSONALUSE = 'NaturalBeautyPersonalUse';
+    const FONT_OPTIEN = 'Optien';
+    const FONT_PRESSSTART2P = 'PressStart2P';
+    const FONT_PRICEDOWN = 'Pricedown';
+    const FONT_RIDINDIRTY = 'RidinDirty';
+    const FONT_VETERANTYPEWRITER = 'VeteranTypewriter';
+    const FONT_WATERMELONSCRIPTDEMO = 'WatermelonScriptDemo';
+    const FONT_MONTSERRAT = 'Montserrat';
 
     /**
      * @var array Text properties
@@ -307,6 +327,40 @@ class Text
     public function base64()
     {
         return $this->addItem('base64', 'b64');
+    }
+
+    /**
+     * Sets space.
+     *
+     * @param int $space space in pixels
+     * @return \self
+     */
+    public function space($space)
+    {
+        return $this->addItem('space', 'ws', $space);
+    }
+
+    /**
+     * Sets space between the lines.
+     *
+     * @param int $lineSpace space in pixels
+     * @return \self
+     */
+    public function lineSpace($lineSpace)
+    {
+        return $this->addItem('linespace', 'lines', $lineSpace);
+    }
+
+    /**
+     * Sets the given parameter item into the chain.
+     *
+     * @param string $parameter
+     *
+     * @return \self
+     */
+    public function addRaw($parameter)
+    {
+        return $this->addItem($parameter);
     }
 
     /**

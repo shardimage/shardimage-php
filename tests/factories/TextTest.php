@@ -48,4 +48,19 @@ class TextTest extends \PHPUnit\Framework\TestCase
         $text = ($this->getEmptyTextObject('My encoded text.'))->size(40)->base64();
         $this->assertEquals($expectedText, (string) $text);
     }
+
+    public function testSpace()
+    {
+        $expectedText = 'ws:40:The%20crowd%20is%20loud%21';
+        $text = ($this->getEmptyTextObject('The crowd is loud!'))->space(40);
+        $this->assertSame($expectedText, (string) $text);
+    }
+
+    public function testLineSpace()
+    {
+        $expectedText = 'lines:50:The%20crowd%20is%20loud%21';
+        $text = ($this->getEmptyTextObject('The crowd is loud!'))->lineSpace(50);
+        $this->assertSame($expectedText, (string) $text);
+    }
+
 }
