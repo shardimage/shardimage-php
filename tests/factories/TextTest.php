@@ -63,4 +63,13 @@ class TextTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expectedText, (string) $text);
     }
 
+    public function testGoogleFonts()
+    {
+        $expectedMontserratText = 'gf:Montserrat:The%20crowd%20is%20loud%21';
+        $montserratText = ($this->getEmptyTextObject('The crowd is loud!'))->googleFonts('Montserrat');
+        $this->assertSame($expectedMontserratText, (string) $montserratText);
+        $expectedBadScriptText = 'gf:Bad%20Script:The%20crowd%20is%20loud%21';
+        $badScriptText = ($this->getEmptyTextObject('The crowd is loud!'))->googleFonts('Bad Script');
+        $this->assertSame($expectedBadScriptText, (string) $badScriptText);
+    }
 }

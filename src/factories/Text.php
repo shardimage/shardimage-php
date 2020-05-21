@@ -210,6 +210,18 @@ class Text
     }
 
     /**
+     * Sets google font family to the text.
+     *
+     * @param string $font
+     * @link https://fonts.google.com
+     * @return \self
+     */
+    public function googleFonts($font)
+    {
+        return $this->addItem('googleFont', 'gf', rawurlencode($font));
+    }
+
+    /**
      * Sets the font weight.
      *
      * @param string $weight Font weight
