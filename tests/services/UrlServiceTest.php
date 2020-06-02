@@ -22,6 +22,7 @@ class UrlServiceTest extends \PHPUnit\Framework\TestCase
         $this->expectException(InvalidValueException::class);
         $service = new UrlService(new Client([
             'urlSizeLimit' => 0,
+            'useMsgPack' => false,
         ]));
         $service->create(['cloudId' => 'example', 'publicId' => 'exampleImage']);
     }
@@ -32,6 +33,7 @@ class UrlServiceTest extends \PHPUnit\Framework\TestCase
         $this->expectExceptionMessageRegExp('/^URL size exceeded the limit!/');
         $service = new UrlService(new Client([
             'urlSizeLimit' => 1.5,
+            'useMsgPack' => false,
         ]));
         $transformation = new Transformation();
         for ($i = 0; $i < 100; $i++) {
