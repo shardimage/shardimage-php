@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "shardimage/shardimage-php-api": "^1.0",
         "psr/log": "^1.0"
     },
