@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-alpha40] - 2020-06-02
+### Add
+ - URL size checking in the end of the URL generation.
+ - URL size checking test.
+
 ## [1.0.0-alpha39] - 2020-05-21
 ### Add
  - Google fonts can be used in URL generation with `googleFonts` function in `Text` factory.

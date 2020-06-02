@@ -49,6 +49,7 @@ use shardimage\shardimagephp\services\UrlService;
 class Client extends BaseObject
 {
     const VERSION = '1.0.0';
+    private const URL_SIZE_LIMIT = 14.0;
 
     /**
      * @var string Shardimage API host
@@ -194,6 +195,11 @@ class Client extends BaseObject
      * @var array Sent request Ids
      */
     private $sentContentIds = [];
+
+    /**
+     * @var float Maximal URL size in KB
+     */
+    private $urlSizeLimit = self::URL_SIZE_LIMIT;
 
     /**
      * @inheritDoc
@@ -512,5 +518,25 @@ class Client extends BaseObject
     public function getImageHostName()
     {
         return $this->imageHostname;
+    }
+
+    /**
+     * @return float
+     */
+    public function getUrlSizeLimit(): float
+    {
+        return $this->urlSizeLimit;
+    }
+
+    /**
+     * @param float $limit
+     * @throws InvalidParamException
+     */
+    public function setUrlSizeLimit($limit): void
+    {
+        if ($limit > self::URL_SIZE_LIMIT) {
+            throw new InvalidParamException(sprintf('Url size limit can\'t be higher than %s', self::URL_SIZE_LIMIT));
+        }
+        $this->urlSizeLimit = $limit;
     }
 }

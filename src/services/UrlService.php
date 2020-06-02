@@ -11,6 +11,7 @@ namespace shardimage\shardimagephp\services;
 
 use shardimage\shardimagephp\helpers\SecurityHelper;
 use shardimage\shardimagephpapi\base\exceptions\InvalidConfigException;
+use shardimage\shardimagephpapi\base\exceptions\InvalidValueException;
 
 /**
  * Shardimage URL generator service.
@@ -298,8 +299,9 @@ class UrlService extends Service
                     break;
             }
         }
-
-        return $this->client->imageHost.'/'.$params['cloudId'].$security.$url;
+        $result = $this->client->imageHost . '/' . $params['cloudId'] . $security . $url;
+        $this->checkUrlSize($result);
+        return $result;
     }
 
     /**
@@ -314,5 +316,18 @@ class UrlService extends Service
      */
     public static function getController()
     {
+    }
+
+    /**
+     * Checks the URL size and throws exception if it's over the limit
+     * @param string $url
+     * @throws InvalidValueException
+     */
+    private function checkUrlSize($url)
+    {
+        $urlSizeKilobyte = mb_strlen($url, '8bit') / 1024;
+        if ($urlSizeKilobyte > $this->client->getUrlSizeLimit()) {
+            throw new InvalidValueException(sprintf('URL size exceeded the limit! (%f > %f)', $urlSizeKilobyte, $this->client->getUrlSizeLimit()));
+        }
     }
 }
