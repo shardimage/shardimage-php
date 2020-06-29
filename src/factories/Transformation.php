@@ -124,6 +124,18 @@ class Transformation
     }
 
     /**
+     * Sets the X and Y offset to the same specified value.
+     *
+     * @param int $offset Y offset
+     *
+     * @return \self
+     */
+    public function xy($offset)
+    {
+        return $this->addItem('xy', $offset);
+    }
+
+    /**
      * Crops the image to the exact size specified by the resize methods.
      *
      * @return \self

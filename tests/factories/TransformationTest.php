@@ -55,9 +55,25 @@ class TransformationTest extends \PHPUnit\Framework\TestCase
         $expectedTransformation = "w:200/if(ar,lt,1.5)_border:0,4,0,4_co:red/if:else_border:4,0,4,0_co:black";
         $condition = (new Condition())->lt(Condition::ASPECT_RATIO, 1.5);
         $transformation = ($this->getEmptyTransformationObject())
-                ->width(200)
-                ->group()->ifIf($condition)->border(0, 4, 0, 4)->color('red')
-                ->group()->ifElse()->border(4, 0, 4, 0)->color('black');
+            ->width(200)
+            ->group()->ifIf($condition)->border(0, 4, 0, 4)->color('red')
+            ->group()->ifElse()->border(4, 0, 4, 0)->color('black');
+        $this->assertEquals($expectedTransformation, (string) $transformation);
+    }
+
+    public function testXAndY()
+    {
+        $expectedTransformation = 'x:5_y:20';
+        $transformation = ($this->getEmptyTransformationObject());
+        $transformation->x(5)->y(20);
+        $this->assertEquals($expectedTransformation, (string) $transformation);
+    }
+
+    public function testXY()
+    {
+        $expectedTransformation = 'xy:20';
+        $transformation = ($this->getEmptyTransformationObject());
+        $transformation->xy(20);
         $this->assertEquals($expectedTransformation, (string) $transformation);
     }
 }
