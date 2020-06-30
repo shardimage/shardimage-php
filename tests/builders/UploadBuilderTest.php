@@ -68,4 +68,15 @@ class UploadBuilderTest extends \PHPUnit\Framework\TestCase
         $this->assertSame([], $newParams->getParams());
         $this->assertSame(['tags' => []], $newParams->getOptionalParams());
     }
+
+    public function testOverride()
+    {
+        $builder = ($this->getEmptyBuilderObject());
+        $params = $builder->allowOverride()->build();
+        $this->assertTrue(is_object($params));
+        $this->assertSame(['allowOverride' => true], $params->getParams());
+        $newParams = $builder->disallowOverride()->build();
+        $this->assertTrue(is_object($newParams));
+        $this->assertSame(['allowOverride' => false], $newParams->getParams());
+    }
 }

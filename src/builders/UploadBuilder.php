@@ -49,6 +49,11 @@ class UploadBuilder
     private $tags;
 
     /**
+     * @var bool allowing override of the image if publicId already exists
+     */
+    private $allowOverride;
+
+    /**
      * Set up cloud ID
      * @param string $cloudId
      * @return static
@@ -205,8 +210,31 @@ class UploadBuilder
         $this->addAttributeToParams($params, 'cloudId', $this->cloudId);
         $this->addAttributeToParams($params, 'resource', $this->remoteResource);
         $this->addAttributeToParams($params, 'file', $this->file);
+        $this->addAttributeToParams($params, 'allowOverride', $this->allowOverride);
         $this->addAttributeToParams($optionalParams, 'tags', $this->tags);
         return new UploadParams($params, $optionalParams);
+    }
+
+    /**
+     * Turns overriding on, if publicId already exists in the cloud, the recently uploaded will override it.
+     * @return static
+     */
+    public function allowOverride()
+    {
+        $new = clone $this;
+        $new->allowOverride = true;
+        return $new;
+    }
+
+    /**
+     * Turns overriding off, if publicId already exists in the cloud, exception will be thrown.
+     * @return static
+     */
+    public function disallowOverride()
+    {
+        $new = clone $this;
+        $new->allowOverride = false;
+        return $new;
     }
 
     /**

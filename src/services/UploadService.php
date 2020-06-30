@@ -31,6 +31,7 @@ class UploadService extends Service
      * an array with a 'file' key consisting of the above 3)
      * <li>publicId - image ID
      * <li>cloudId - cloud ID
+     * <li>allowOverride - bool
      *
      * @param array $optParams Optional API parameters
      *
