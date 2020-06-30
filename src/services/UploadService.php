@@ -92,6 +92,7 @@ class UploadService extends Service
      * <li>resource - source (string - URL, an array with a 'remote' key consisting
      * of the above)
      * <li>publicId - image ID
+     * <li>allowOverride - bool
      * @param array $optParams Optional API parameters
      *
      * <li>format - image format

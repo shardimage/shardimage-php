@@ -211,6 +211,7 @@ class Client extends BaseObject
         if ((isset($this->apiSecret)||isset($this->imageSecret)) && !isset($this->apiKey)) {
             throw new InvalidParamException('Invalid Client, apiKey is required if you use apiSecret or imageSecret!');
         }
+        $this->validateClientConfig();
         $this->service = new ClientService([
             'host' => $this->apiHost,
             'authData' => new AuthData([
@@ -539,5 +540,19 @@ class Client extends BaseObject
             throw new InvalidParamException(sprintf('Url size limit can\'t be higher than %s', self::URL_SIZE_LIMIT));
         }
         $this->urlSizeLimit = $limit;
+    }
+
+    /**
+     * @throws InvalidConfigException
+     */
+    private function validateClientConfig()
+    {
+        $connectionAttributes = ['cloudId', 'apiKey', 'apiSecret', 'imageSecret', 'imageHost', 'apiHost', 'apiAccessToken', 'apiAccessTokenSecret'];
+        foreach ($connectionAttributes as $attributeName) {
+            $value = $this->$attributeName;
+            if (is_string($value) && preg_match('!^\s++|\s++$!smu', $value) === 1) {
+                throw new InvalidConfigException(sprintf('Configuration "%s" contains leading or trailing whitespaces!', $attributeName));
+            }
+        }
     }
 }
