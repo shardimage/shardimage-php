@@ -27,12 +27,13 @@ class UrlService extends Service
      * <li>publicID - image ID
      * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>format - output format
+     * <li>seo - SEO filename
+     * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -55,11 +56,12 @@ class UrlService extends Service
      * <li>url - image URL
      * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>seo - SEO filename
+     * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -87,6 +89,7 @@ class UrlService extends Service
      * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
      * <li>version - version number (to force cache miss)
      * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -110,12 +113,13 @@ class UrlService extends Service
      * <li>facebookId - Facebook user ID
      * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>format - output format
+     * <li>seo - SEO filename
+     * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -138,12 +142,13 @@ class UrlService extends Service
      * <li>twitterId - Twitter user ID
      * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>format - output format
+     * <li>seo - SEO filename
+     * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -166,12 +171,12 @@ class UrlService extends Service
      * <li>youtubeId - YouTube video ID
      * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>format - output format
+     * <li>seo - SEO filename
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -195,12 +200,13 @@ class UrlService extends Service
      * <li>cloudinaryImage - Cloudinary image ID
      * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>format - output format
+     * <li>seo - SEO filename
+     * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -220,12 +226,13 @@ class UrlService extends Service
      * <li>wikimediaImage - Wikimedia image URL
      * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>format - output format
+     * <li>seo - SEO filename
+     * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -244,16 +251,16 @@ class UrlService extends Service
      *
      * @param string $resource Resource component of URL
      * @param array  $params   Required API parameters
-     *
      * <li>cloudId - cloud ID
-     * @param array $optParams Optional API parameters
      *
-     *                         <li>option - options defined by shardimage\shardimagephp\factories\Option
-     *                         <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
-     *                         <li>version - version number (to force cache miss)
-     *                         <li>format - output format
-     *                         <li>seo - SEO filename
-     *                         <li>security - "basic" or "token"
+     * @param array $optParams Optional API parameters
+     * <li>option - options defined by shardimage\shardimagephp\factories\Option
+     * <li>transformation - transformations defined by shardimage\shardimagephp\factories\Transformation
+     * <li>version - version number (to force cache miss)
+     * <li>format - output format
+     * <li>seo - SEO filename
+     * <li>security - "basic" or "token"
+     * <li>default_public_id - string, public ID of image which will be served if original image can't
      *
      * @return string
      */
@@ -274,6 +281,9 @@ class UrlService extends Service
         }
         if (isset($optParams['version'])) {
             $url .= '/v/'.$optParams['version'];
+        }
+        if (isset($optParams['default_public_id'])) {
+            $url .= '/d/'.$optParams['default_public_id'];
         }
         $url .= $resource;
         if (isset($optParams['format'])) {

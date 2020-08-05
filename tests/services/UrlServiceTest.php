@@ -42,4 +42,17 @@ class UrlServiceTest extends \PHPUnit\Framework\TestCase
         $service->create(['cloudId' => 'example', 'publicId' => 'exampleImage'], ['transformation' => $transformation]);
     }
 
+    public function testDefaultImageId()
+    {
+        $expectedUrl = 'https://img.shardimage.com/example/v/123456789/d/index_image/i/exampleImage';
+        $service = new UrlService(new Client([
+            'useMsgPack' => false,
+        ]));
+        $transformation = new Transformation();
+        for ($i = 0; $i < 100; $i++) {
+            $transformation->group()->gTopLeft()->color('blue')->textOverlay('testText' . $i)->group();
+        }
+        $url = $service->create(['cloudId' => 'example', 'publicId' => 'exampleImage'], ['default_public_id' => 'index_image', 'version' => 123456789]);
+        $this->assertSame($expectedUrl, $url);
+    }
 }
