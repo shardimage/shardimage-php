@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-alpha47] - 2020-08-05
+### Fix
+ - Fixing remote URL generation with adding URL encoding.
+
 ## [1.0.0-alpha46] - 2020-08-05
 ### Add
  - An image public ID from the same cloud can be added to `default_public_id` optional API parameter in URL creation. It will be rendered if the original image source is not available.

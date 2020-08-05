@@ -130,7 +130,7 @@ class UrlService extends Service
         }
         $params = $this->client->fillParams(['cloudId', 'facebookId'], $params);
 
-        return $this->build('/r/facebook/'.$params['facebookId'], $params, $optParams);
+        return $this->build('/r/facebook/' . rawurlencode($params['facebookId']), $params, $optParams);
     }
 
     /**
@@ -159,7 +159,7 @@ class UrlService extends Service
         }
         $params = $this->client->fillParams(['cloudId', 'twitterId'], $params);
 
-        return $this->build('/r/twitter/'.$params['twitterId'], $params, $optParams);
+        return $this->build('/r/twitter/' . rawurlencode($params['twitterId']), $params, $optParams);
     }
 
     /**
