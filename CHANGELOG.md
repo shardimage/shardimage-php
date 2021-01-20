@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-alpha48] - 2021-01-20
+### Change
+ - Image hostname parsing moved to `UrlService` from `Client`. From now it's possible to overwrite `Client` class's `imageHost`.
+ - From now `UrlService` public functions will accept `imageHost` parameter in `$optParams` so the image host can be changed right at the URL creation.
+
 ## [1.0.0-alpha47] - 2020-08-05
 ### Fix
  - Fixing remote URL generation with adding URL encoding.

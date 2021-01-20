@@ -189,6 +189,7 @@ class Client extends BaseObject
 
     /**
      * @var string Shardimage image hostname (overridden by host)
+     * @deprecated since version 1.0.0-alpha48
      */
     private $imageHostname;
 
@@ -230,7 +231,6 @@ class Client extends BaseObject
             'timeout' => $this->timeout,
             'dumpService' => $this->dumpService,
         ]);
-        $this->imageHostname = parse_url($this->imageHost, PHP_URL_HOST);
     }
 
     /**
@@ -516,6 +516,7 @@ class Client extends BaseObject
 
     /**
      * @return string
+     * @deprecated since version 1.0.0-alpha48
      */
     public function getImageHostName()
     {

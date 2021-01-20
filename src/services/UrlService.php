@@ -34,6 +34,7 @@ class UrlService extends Service
      * <li>seo - SEO filename
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -62,6 +63,7 @@ class UrlService extends Service
      * <li>seo - SEO filename
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -90,6 +92,7 @@ class UrlService extends Service
      * <li>version - version number (to force cache miss)
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -120,6 +123,7 @@ class UrlService extends Service
      * <li>seo - SEO filename
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -149,6 +153,7 @@ class UrlService extends Service
      * <li>seo - SEO filename
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -177,6 +182,7 @@ class UrlService extends Service
      * <li>format - output format
      * <li>seo - SEO filename
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -207,6 +213,7 @@ class UrlService extends Service
      * <li>seo - SEO filename
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -233,6 +240,7 @@ class UrlService extends Service
      * <li>seo - SEO filename
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -261,6 +269,7 @@ class UrlService extends Service
      * <li>seo - SEO filename
      * <li>security - "basic" or "token"
      * <li>default_public_id - string, public ID of image which will be served if original image can't
+     * <li>imageHost - option to set custom image host locally for current URL creation
      *
      * @return string
      */
@@ -293,23 +302,24 @@ class UrlService extends Service
             $url .= '/seo/'.$optParams['seo'];
         }
         $security = '';
+        $imageHost = $optParams['imageHost'] ?? $this->client->imageHost;
         if (isset($optParams['security'])) {
             switch ($optParams['security']) {
                 case 'basic':
                     if (!$this->client->apiKey || !$this->client->imageSecret) {
                         throw new InvalidConfigException('The apiKey and imageSecret must be specified!');
                     }
-                    $security = '/s-b3:'.SecurityHelper::generateImageSecretSignature($this->client->imageHostname, ltrim($url, '/'), $this->client->apiKey, $this->client->imageSecret);
+                    $security = '/s-b3:'.SecurityHelper::generateImageSecretSignature($this->getImageHostname($imageHost), ltrim($url, '/'), $this->client->apiKey, $this->client->imageSecret);
                     break;
                 case 'token':
                     if (!$this->client->apiAccessTokenSecret){
                         throw new InvalidConfigException('The apiAccessTokenSecret must be specified!');
                     }
-                    $security = '/s-token2:'.$this->client->apiAccessToken.','.SecurityHelper::generateImageTokenSecretSignature($this->client->imageHostname, ltrim($url, '/'), $this->client->apiAccessToken, $this->client->apiAccessTokenSecret);
+                    $security = '/s-token2:'.$this->client->apiAccessToken.','.SecurityHelper::generateImageTokenSecretSignature($this->getImageHostname($imageHost), ltrim($url, '/'), $this->client->apiAccessToken, $this->client->apiAccessTokenSecret);
                     break;
             }
         }
-        $result = $this->client->imageHost . '/' . $params['cloudId'] . $security . $url;
+        $result = $imageHost . '/' . $params['cloudId'] . $security . $url;
         $this->checkUrlSize($result);
         return $result;
     }
@@ -339,5 +349,13 @@ class UrlService extends Service
         if ($urlSizeKilobyte > $this->client->getUrlSizeLimit()) {
             throw new InvalidValueException(sprintf('URL size exceeded the limit! (%f > %f)', $urlSizeKilobyte, $this->client->getUrlSizeLimit()));
         }
+    }
+
+    /**
+     * @return string
+     */
+    private function getImageHostname(string $imageHost): string
+    {
+        return parse_url($imageHost, PHP_URL_HOST);
     }
 }
