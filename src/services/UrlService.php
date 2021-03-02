@@ -309,7 +309,8 @@ class UrlService extends Service
                     if (!$this->client->apiKey || !$this->client->imageSecret) {
                         throw new InvalidConfigException('The apiKey and imageSecret must be specified!');
                     }
-                    $security = '/s-b3:'.SecurityHelper::generateImageSecretSignature($this->getImageHostname($imageHost), ltrim($url, '/'), $this->client->apiKey, $this->client->imageSecret);
+                    $trimmedUrl = ltrim($url, '/');
+                    $security = '/s-b4:'.SecurityHelper::generateImageSecretSignature($this->getImageHostname($imageHost), rawurlencode(rawurldecode($trimmedUrl)), $this->client->apiKey, $this->client->imageSecret);
                     break;
                 case 'token':
                     if (!$this->client->apiAccessTokenSecret){
