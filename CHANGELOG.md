@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0-alpha49] - 2021-03-02
 ### Add
  - Added `s-b4` secure hash type.
-### Add
+### Change
  - Basic security hash is `s-b4` from now.
 
 ## [1.0.0-alpha48] - 2021-01-20
