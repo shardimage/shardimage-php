@@ -21,7 +21,7 @@ class IndexIteratorTest extends TestCase
      */
     private function getIterator()
     {
-        $client = new Client();
+        $client = new Client(['useMsgPack' => false]);
         $fakeService = new FakeService($client);
         return $fakeService->indexIterator();
     }
