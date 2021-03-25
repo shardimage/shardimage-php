@@ -123,6 +123,16 @@ abstract class Service extends BaseObject
     }
 
     /**
+     * @param array $params
+     * @param array|IndexParams $optParams
+     * @return \shardimage\shardimagephp\services\IndexIterator
+     */
+    public function indexIterator()
+    {
+        return new \shardimage\shardimagephp\models\IndexIterator($this);
+    }
+
+    /**
      * Shardimage module
      */
     abstract public static function getModule();
