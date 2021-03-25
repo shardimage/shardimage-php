@@ -68,7 +68,10 @@ class FakeService extends Service
             $count++;
             $models[] = new Fake(['id' => $id, 'name' => $name]);
         }
-        if ($nextPageToken === array_key_last(self::$fakeData)) {
+        end(self::$fakeData);
+        $lastKey = key(self::$fakeData);
+        reset(self::$fakeData);
+        if ($nextPageToken === $lastKey) {
             $nextPageToken = false;
         }
         return new Index([
