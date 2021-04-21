@@ -175,7 +175,10 @@ class IndexIterator implements Iterator
     public function rewindAll()
     {
         if (isset($this->indexParams['pageToken'])) {
-            $this->indexParams['pageToken'] = null;
+            unset($this->indexParams['pageToken']);
+        }
+        if (null !== $this->nextPageToken) {
+            $this->nextPageToken = null;
         }
         $this->loadResult();
     }
