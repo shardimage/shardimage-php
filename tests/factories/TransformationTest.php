@@ -76,4 +76,34 @@ class TransformationTest extends \PHPUnit\Framework\TestCase
         $transformation->xy(20);
         $this->assertEquals($expectedTransformation, (string) $transformation);
     }
+
+    public function testFrame()
+    {
+        $expectedTransformation = "format:jpg_frame:50";
+        $transformation = ($this->getEmptyTransformationObject())->toJpg()->frame(50);
+        $this->assertEquals($expectedTransformation, (string) $transformation);
+        $expectedTransformation2 = "frame:156";
+        $transformation2 = ($this->getEmptyTransformationObject())->frame(156);
+        $this->assertEquals($expectedTransformation2, (string) $transformation2);
+    }
+
+    public function testSecond()
+    {
+        $expectedTransformation = "format:jpg_sec:21";
+        $transformation = ($this->getEmptyTransformationObject())->toJpg()->second(21);
+        $this->assertEquals($expectedTransformation, (string) $transformation);
+        $expectedTransformation2 = "sec:34";
+        $transformation2 = ($this->getEmptyTransformationObject())->second(34);
+        $this->assertEquals($expectedTransformation2, (string) $transformation2);
+    }
+
+    public function testFrameAndSecond()
+    {
+        $expectedTransformation = "frame:50_sec:56";
+        $transformation = ($this->getEmptyTransformationObject())->frame(50)->second(56);
+        $this->assertEquals($expectedTransformation, (string) $transformation);
+        $expectedTransformation2 = "sec:45_frame:15";
+        $transformation2 = ($this->getEmptyTransformationObject())->second(45)->frame(15);
+        $this->assertEquals($expectedTransformation2, (string) $transformation2);
+    }
 }

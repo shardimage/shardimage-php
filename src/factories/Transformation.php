@@ -993,6 +993,26 @@ class Transformation
     }
 
     /**
+     * Sets the given frame number.
+     * @param int $frameNumber
+     * @return \self
+     */
+    public function frame($frameNumber)
+    {
+        return $this->addItem('frame', $frameNumber);
+    }
+
+    /**
+     * Sets the given second.
+     * @param int $second
+     * @return \self
+     */
+    public function second($second)
+    {
+        return $this->addItem('sec', $second);
+    }
+
+    /**
      * Sets the given parameter item into the chain.
      *
      * @param string $parameter
