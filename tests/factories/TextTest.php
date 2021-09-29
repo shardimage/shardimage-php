@@ -72,4 +72,11 @@ class TextTest extends \PHPUnit\Framework\TestCase
         $badScriptText = ($this->getEmptyTextObject('The crowd is loud!'))->googleFonts('Bad Script');
         $this->assertSame($expectedBadScriptText, (string) $badScriptText);
     }
+
+    public function testDefaultNopTransformation()
+    {
+        $expectedText = 'nop:random';
+        $simpleText = $this->getEmptyTextObject('random');
+        $this->assertSame($expectedText, (string) $simpleText);
+    }
 }

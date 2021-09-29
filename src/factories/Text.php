@@ -364,6 +364,16 @@ class Text
     }
 
     /**
+     * Nop transformation
+     *
+     * @return \self
+     */
+    public function nop()
+    {
+        return $this->addItem('nop', 'nop');
+    }
+
+    /**
      * Sets the given parameter item into the chain.
      *
      * @param string $parameter
@@ -396,11 +406,10 @@ class Text
     private function render()
     {
         $parts = [];
-        if (!empty($this->items)) {
-            $parts[] = implode(',', $this->items);
-        } else {
-            $this->text = ':' . $this->text;
+        if (empty($this->items)) {
+            $this->nop();
         }
+        $parts[] = implode(',', $this->items);
         $parts[] = isset($this->items['base64']) ? self::base64Encode($this->text) : rawurlencode($this->text);
 
         return implode(':', $parts);
