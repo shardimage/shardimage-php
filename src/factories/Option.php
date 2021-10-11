@@ -33,7 +33,7 @@ class Option
 
     public function cacheMinFresh($interval)
     {
-        return $this->addItem('hc-minfresh', $interval);
+        return $this->addItem('hc-min-fresh', $interval);
     }
 
     public function cacheSharedMaxAge($interval)
