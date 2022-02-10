@@ -29,14 +29,14 @@ class ImageUrlAccessTokenExtraAuthentication extends BaseObject
      *
      * @var array
      */
-    public $authentication;
+    public $authentication = [];
 
     /**
      * @inheritDoc
      */
-    public function __construct($config = [])
+    public function __construct(array $config = [])
     {
-        if ($config) {
+        if ($config !== []) {
             $this->authentication = $config;
         }
         $this->init();
